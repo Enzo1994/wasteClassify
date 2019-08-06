@@ -12,19 +12,15 @@ exports.main = async (event, context) => {
   let returnData = {}
   const db = cloud.database()
   returnData = await db.collection('homePageData').where({ _id: "5d236b3432dd502a98828529" }).get()
-  // const idx = lunr(function(){
-  //   this.field('title')
-  //   this.field('body')
-  //   this.add({
-  //     "title": "苹果皮",
-  //     "body": "If music be the food of love, play on: Give me excess of it…",
-  //     "author": "William Shakespeare",
-  //     "id": "1"
-  //   })  
-  // })
-  
-  return lunr //.search('苹果皮')
-  return returnData.data[0].data
+  let result = {}
+  returnData.data[0].data.map(item=>{
+
+    //搜索引擎待优化
+    if (item.name == event.keyWord){
+      result = item
+    }
+  })
+  return result
   return {
     event,
     openid: wxContext.OPENID,
