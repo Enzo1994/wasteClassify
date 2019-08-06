@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "search-bar":"../../component/SearchBar"
-  },
-  "disableScroll": true
-}
