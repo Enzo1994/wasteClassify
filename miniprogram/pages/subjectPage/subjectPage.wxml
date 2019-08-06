@@ -1,0 +1,31 @@
+<!--miniprogram/pages/subjectPage/subjectPage.wxml-->
+<view class='header'>
+</view>
+<view class='main'>
+<ul>
+  <li> 
+    <image class="" src="../../images/lobster.jpg" >
+      
+    </image>
+  <span>龙虾
+  
+  </span>
+   </li>
+  <li> 
+    <image class="" src="../../images/lobster.jpg" >
+      
+    </image>
+  <span>龙虾
+  
+  </span>
+   </li>
+  <li> 
+    <image class="" src="../../images/lobster.jpg" >
+      
+    </image>
+  <span>龙虾
+  
+  </span>
+   </li>
+</ul>
+</view>
