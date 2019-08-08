@@ -9,7 +9,8 @@
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
-    "pages/searchResult/searchResult"
+    "pages/searchResult/searchResult",
+    "component/notice/notice"
   ],
   "tabBar": {
     "color": "#a9b7b7",
