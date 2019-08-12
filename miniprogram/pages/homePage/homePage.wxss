@@ -237,6 +237,12 @@ page{
   
 }
 
+.illustration ul i:nth-child(3){
+  top: -75px;
+}
+
+
+
 .illustration ul i em{
   position: absolute;
   left: 50%;
@@ -291,6 +297,7 @@ page{
 }
 
 .card-dialog__container{
+  position: relative;
   width: 100%;
   height: 100%;
   border-radius: 20px;
@@ -313,5 +320,13 @@ page{
 
 }
 .card-dialog__content__category{
+  
+  display: block;
+  text-align: left;
   color: red;
+}
+.card-dialog__container__close-icon{
+  position: absolute;
+  right: 20px;
+  top: 10px
 }

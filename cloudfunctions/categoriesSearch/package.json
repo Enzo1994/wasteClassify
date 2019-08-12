@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lunr": "^2.3.6",
     "node-segment": "^0.0.2",
     "wx-server-sdk": "latest"
   }

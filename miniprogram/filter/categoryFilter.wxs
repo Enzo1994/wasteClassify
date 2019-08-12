@@ -1,0 +1,21 @@
+module.exports={
+  numToStr:function(num){
+    console.log(num)
+
+    switch (num) {
+      case 1:
+       return '可回收垃圾'
+        break
+      case 2:
+        return '有害垃圾'
+        break
+      case 4:
+        return '厨余垃圾'
+        break
+      case 8:
+        return '其他垃圾'
+        break
+
+    }
+  }
+}

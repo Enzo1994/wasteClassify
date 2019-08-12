@@ -10,7 +10,8 @@
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
     "pages/searchResult/searchResult",
-    "component/notice/notice"
+    "component/notice/notice",
+    "pages/subjectPage/articlePage/articlePage"
   ],
   "tabBar": {
     "color": "#a9b7b7",
@@ -18,10 +19,14 @@
     "borderStyle": "black",
     "list": [
       {
+        "selectedIconPath": "images/homepage-active.png",
+        "iconPath": "images/homepage.png",
         "pagePath": "pages/homePage/homePage",
         "text": "首页"
       },
       {
+        "selectedIconPath": "images/topic-active.png",
+        "iconPath": "images/topic.png",
         "pagePath": "pages/subjectPage/subjectPage",
         "text": "专题"
       }
