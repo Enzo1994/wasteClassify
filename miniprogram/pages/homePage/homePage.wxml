@@ -23,7 +23,7 @@
         <image wx:for="{{iconImgPos}}" wx:for-item="item" wx:for-index="index" class="" style="opacity:{{index==currentLi?1:0}};top:{{item.top}};left:{{item.left}};right:{{item.right}};bottom:{{item.bottom}};transform:{{item.transform}}" src="{{item.src}}"></image>
     </view> -->
 </view>
-<scroll-view scroll-y style="height: 100%;">
+<scroll-view scroll-y style="height: 100%;"  bindscrolltolower='lower'>
   <view class="container" hover-class="none" bind:touchstart="touchStart" bind:touchend="touchEnd">
     <ul class="container-list" style="transform:translateX({{-25*currentLi}}%)">
       <li wx:for="{{bgLi}}" wx:for-item="item" style="background-color:{{item.bgC}};color:{{item.fontColor}}">

@@ -72,7 +72,9 @@ Page({
         top: '50%',
         transform: 'translateY(-50%) rotateZ(-90deg)'
       }
-    ]
+    ],
+    pageSize: 25,
+    currentPage: 1
   },
   //搜索框数据绑定
   searchInputHandler(e) {
@@ -95,6 +97,7 @@ Page({
   },
   //拖动结束
   touchEnd(e) {
+    let isMove = false 
     const distance = e.changedTouches[0].pageX - this.data.startTouchX;
     console.log(distance)
     if (distance < 0) {
@@ -107,11 +110,11 @@ Page({
         })
         return
       }
-
       console.log('left', this.data.currentLi + 1);
       this.setData({
         currentLi: this.data.currentLi + 1
       })
+      isMove = true
     } else if (distance > 0) {
       if (Math.abs(distance) < 100) {
         return
@@ -122,20 +125,25 @@ Page({
         })
         return
       }
-
       console.log('right', this.data.currentLi - 1);
       this.setData({
         currentLi: this.data.currentLi - 1
       })
+      isMove = true;
 
+    }
+    if(isMove){
+      this.data.garbageData.map((item,index)=>{
+        const key = 'garbageData[' + index + '].data'
+        this.setData({
+          [key]: item.data.slice(0,this.data.pageSize)
+        })      })
     }
   },
   //搜索框点击
   onSearch: function() {
     wx.cloud.callFunction({
-      // 要调用的云函数名称
       name: 'categoriesSearch',
-      // 传递给云函数的event参数
       data: {
         keyWord: this.data.keyWord
       }
@@ -143,37 +151,67 @@ Page({
       this.setData({
         isShowCardDialog: true,
         keyWordOnShow: this.data.keyWord,
-        searchResult:res.result
+        searchResult: res.result
       })
-      
-      // if (res.result.resultStatus == 'exact') {
-        
-        
-      // } else if (res.result.resultStatus == 'fuzzy') {
-
-      // } else {
-
-      //   this.setData({
-      //     searchResult: '',
-
-      //   })
-      //   console.log('不存在')
-
-      // }
-
-      console.log(res)
-      // output: res.result === 3
     }).catch(err => {
-      // handle error
       console.log(err)
-
     })
   },
   //关闭查询卡片对话框
-  closeCardDialog(){
+  closeCardDialog() {
     this.setData({
-      isShowCardDialog:false
+      isShowCardDialog: false
     })
+  },
+  // 当页面滑到最底部时更新数据
+  lower() {
+    console.log('onlower')
+    const db = wx.cloud.database()
+    let category = 0;
+    switch (this.data.currentLi) {
+      case 0:
+        category = 4;
+        break;
+      case 1:
+        category = 2;
+        break;
+      case 2:
+        category = 8;
+        break;
+      case 3:
+        category = 1;
+        break;
+    }
+
+    this.setData({
+      currentPage: this.data.currentPage + 1
+    })
+    let arr = []
+    wx.cloud.callFunction({
+      name: 'getMoreCategoryItems',
+      data: {
+        category,
+        currentPage: this.data.currentPage,
+        pageSize: this.data.pageSize
+      }
+    }).then(res => {
+      console.log(res, this.data.garbageData)
+      this.data.garbageData.forEach((item,index) => {
+        if (item.category == category) {
+          res.result.map(i=>{
+            arr.push(i.name)
+          })
+          const key = 'garbageData['+index+'].data'
+          this.setData({
+            [key]: item.data.concat(arr)
+          })
+        }
+      })
+      console.log(this.data.garbageData)
+    }).catch(err => {
+      console.log(err)
+    })
+
   },
   /**
    * 生命周期函数--监听页面加载
@@ -184,7 +222,6 @@ Page({
       _id: "5d236b3432dd502a98828529"
     }).get({
       success: (res) => {
-        console.log(res)
         const arr = [{
           category: 1,
           data: []
@@ -202,10 +239,10 @@ Page({
         let returnFlag = true;
         res.data[0].data.map(item => {
           arr.map(i => {
-            if (i.data.length > 20) {
+            if (i.data.length > this.data.pageSize - 1) {
               return false;
             }
-            if (i.category == item.categroy) {
+            if (i.category == item.category) {
               i.data.push(item.name)
             }
           })
@@ -232,7 +269,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
   },
 
   /**
@@ -252,14 +288,12 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
-  },
+  onPullDownRefresh: function() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-  },
+  onReachBottom: function() {},
 
   /**
    * 用户点击右上角分享

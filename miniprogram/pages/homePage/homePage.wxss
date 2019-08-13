@@ -191,7 +191,8 @@ page{
   box-sizing: border-box;
   }
 .container .illustration image{
-  padding:10px 0;
+  
+  padding:20px 0;
   width: 70px;
   height: 70px;
   display: block;
@@ -256,6 +257,9 @@ page{
   font-weight:800;
 }
 
+.illustration {
+  height: 420px
+}
 /* .illustration span{
 
   display: block;
