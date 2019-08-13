@@ -1,1 +1,20 @@
 /* miniprogram/pages/subjectPage/articlePage/articlePage.wxss */
+.note{
+  padding: 20px
+}
+.note h1{
+  display: block;
+  margin: 20px auto;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+.note image{
+  display: block;
+  margin: 0 auto;
+}
+.note p{
+  display: block;
+  padding: 20px;
+  text-indent: 2em
+}

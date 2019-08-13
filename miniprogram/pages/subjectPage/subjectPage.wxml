@@ -5,7 +5,7 @@
 </view>
 <view class='main'>
 <ul>
-  <li> 
+  <li bindtap="jump"> 
     <image class="" src="../../images/lobster.jpg" >
       
     </image>

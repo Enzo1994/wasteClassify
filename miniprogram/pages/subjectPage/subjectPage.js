@@ -7,7 +7,11 @@ Page({
   data: {
 
   },
-
+  jump:function(){
+    wx.navigateTo({
+      url: './articlePage/articlePage',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
