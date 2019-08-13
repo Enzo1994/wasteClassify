@@ -36,7 +36,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "毛球App",
+    "navigationBarTitleText": "小垃家垃圾分类",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"

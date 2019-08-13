@@ -326,7 +326,7 @@ page{
 .card-dialog__content__category{
   
   display: block;
-  text-align: left;
+  text-align: center;
   color: red;
 }
 .card-dialog__container__close-icon{

@@ -62,8 +62,8 @@
     <view class="card-dialog__content">
       <p style="">您要查找的</p>
       <p style="color:green">{{keyWordOnShow}}</p>
-      <p wx:if="{{searchResult.resultStatus=='exact'}}">是<span class="card-dialog__content__category">{{searchResult.data[0].categroy}}</span></p>
-      <p wx:elif="{{searchResult.resultStatus=='fuzzy'}}">在这些里吗：<span class="card-dialog__content__category" wx:for="{{searchResult.data}}" wx:for-item="i">{{i.name}}:{{categoryFilter.numToStr(i.categroy)}}</span></p>
+      <p wx:if="{{searchResult.resultStatus=='exact'}}">是<span class="card-dialog__content__category">{{categoryFilter.numToStr(searchResult.data[0].category)}}</span></p>
+      <p wx:elif="{{searchResult.resultStatus=='fuzzy'}}">在这些里吗：<span class="card-dialog__content__category" wx:for="{{searchResult.data}}" wx:for-item="i">{{i.name}}:{{categoryFilter.numToStr(i.category)}}</span></p>
       <p wx:else>没有找到哦！</p>
     </view>
       <i bindtap="closeCardDialog" class="card-dialog__container__close-icon">x</i>
